@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anubhav Agarwal</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body{
+            width: 100%;
+            max-width: 1400px;
+            display: block;
+            margin: auto;
+            min-height: 100vh;
+            background: #191919;
+            font-family: sans-serif;
+        }
+        
+        .navbar{
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9;
+            background: #1a1a1a;
+        }
+        
+        .c1{
+            list-style: none;
+            display: flex;
+        }
+        
+        .c2 a{
+            color: #fff;
+            text-decoration: none;
+            text-transform: capitalize;
+            padding: 10px 30px;
+            margin: 0 20px;
+            line-height: 80px;
+            transition: .5s;
+            font-size: 20px;
+        }
+        
+        .c2 a:hover{
+            color:gold;
+        }
+        .home-section{
+            width: 100%;
+            height: 100vh;
+            padding: 0 100px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            top: 0;
+            opacity: 0;
+            transition: 1s;
+        }
+        
+        .heading{
+            color: #fff;
+            font-size: 120px;
+            text-transform: capitalize;
+            font-weight: 300;
+        }
+        
+        .home-img{
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 50%;
+            object-fit: cover;
+        }
+
+        .home-section{
+            /* previous styles */
+            position: fixed;
+        }
+
+        .home-section.active,.education-section.active,.about-section.active,.contact-section.active{
+            position: relative;
+            opacity: 1;
+            z-index: 8;
+        }
+
+        .education-section{
+            width: 100%;
+            min-height: 100vh;
+            padding: 150px 100px 100px;
+            position: fixed;
+            top: 0;
+            transition: 1s;
+            opacity: 0;
+        }
+        
+        .education-heading{
+            font-size: 100px;
+            background: #252525;
+            text-transform: capitalize;
+            text-align: center;
+            margin-bottom: 50px;
+            color: gold;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-stroke: 8px transparent;
+        }
+        
+        .education-container{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 100px;
+        }
+        
+        .education-card{
+            height: 400px;
+            position: relative;
+        }
+        
+        .education-img{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: .5s;
+        }
+        
+        .education-content{
+            position: relative;
+            padding: 40px;
+            color: #fff;
+            transition: .5s;
+            opacity: 0;
+        }
+        
+        .education-title{
+            font-size: 50px;
+            text-transform: capitalize;
+            text-align: center;
+            font-weight:bolder;
+            color:gold;
+            background: #000;
+            padding: 5px;
+        }
+        
+        .education-info{
+            margin: 40px;
+            font-size: 30px;
+            line-height: 30px;
+            text-align: center;
+            color:gold;
+            font-weight:bolder;
+            background: #000;
+            padding: 10px;
+        }
+        
+        .education-btn{
+            height: 40px;
+            text-transform: capitalize;
+            font-size: 18px;
+            border: none;
+            background: #000;
+            color: gold;
+            cursor: pointer;
+            font-weight:bolder;
+            text-align: center;
+        }
+        
+        .education-btn.live{
+            background: none;
+            border: 2px solid #fff;
+        }
+        
+        .education-card:hover .education-img{
+            filter: blur(5px);
+        }
+        
+        .education-card:hover .education-content{
+            opacity: 1;
+        }
+
+        .about-section{
+            width: 100%;
+            min-height: 100vh;
+            padding: 150px 100px 0;
+            position: fixed;
+            top: 0;
+            transition: 1s;
+        }
+        
+        .about-heading{
+            font-size: 100px;
+            background: #252525;
+            text-transform: capitalize;
+            text-align: center;
+            margin-bottom: 50px;
+            color: gold;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-stroke: 8px transparent;
+        }
+
+        .about{
+            width: 100%;
+            display: grid;
+            grid-template-columns: 40% 55%;
+            grid-gap: 40px;
+        }
+        
+        .about-img-container{
+            position: relative;
+        }
+        
+        .about-info{
+            color: #fff;
+            font-size: 20px;
+            line-height: 40px;
+            text-align: justify;
+        }
+        
+        .about-img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+        
+        .download-cv-btn{
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+            text-transform: capitalize;
+            cursor: pointer;
+            transition: .5s;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .download-cv-btn:hover{
+            background: #000;
+        }
+
+        .contact-section{
+            position: center;
+            top: 0;
+            opacity: 0;
+            transition: 1s;
+            padding: 100px 150px;
+            height: 100vh;
+            display: grid;
+            grid-gap: 50px;
+            color: #fff;
+        }
+
+        .contact-heading{
+            font-size: 100px;
+            background: #252525;
+            text-transform: capitalize;
+            text-align: center;
+            margin-bottom: 50px;
+            color: gold;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-stroke: 8px transparent;
+        }
+        
+        hr{
+            background-color: gold;
+            height: 10px;
+        }
+
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <ul class="c1">
+            <li class="c2"><a href="#home">Home</a></li>
+            <li class="c2"><a href="#education">Education</a></li>
+            <li class="c2"><a href="#about">About</a></li>
+            <li class="c2"><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="home-section active" id="home">
+        <h1 class="heading">I'm<br><b style = "color: gold;">Anubhav<br>Agarwal</b></h1>
+        <img src="img/myimg.jpg" class="home-img" alt="No Image">
+    </section>
+
+    <br><br><br><br><br><br><br><br><br><hr>
+
+    <section class="education-section active" id="education">
+        <h1 class="education-heading">My Education</h1><br><br><br><br>
+        <div class="education-container">
+            <div class="education-card">
+                <img src="img/edu1.png" class="education-img" alt="No Image Found">
+                <div class="education-content">
+                    <h1 class="education-title">Schooling</h1>
+                    <p class="education-info">
+                        Year: 2005 - 2018
+                        <br>Education In Ryan International School in ICSE Board till Grade 10.
+                    </p>
+                    <div class="education-btn">
+                        <a href="https://www.ryangroup.org/ryaninternational/icse/mumbai/ryan-international-school-malad-west"><button class="education-btn ref">Website of Ryan International School</button></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="education-card">
+                <img src="img/edu2.png" class="education-img" alt="No Image Found">
+                <div class="education-content">
+                    <h1 class="education-title">High School</h1>
+                    <p class="education-info">
+                        Year: 2018 - 2020
+                        <br>Education In Pace Junior Science College in HSC Board for Grade 11, 12.
+                    </p>
+                    <div class="education-btn">
+                        <a href="http://www.pacejuniorsciencecollege.com/pace-jr-science-college-borivali.php"><button class="education-btn ref">Website of Pace Institute</button></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="education-card">
+                <img src="img/edu3.jpg" class="education-img" alt="No Image Found">
+                <div class="education-content">
+                    <h1 class="education-title">College</h1>
+                    <p class="education-info">
+                        Year: 2020 - 2024
+                        <br>Education In VIT Vellore for B.Tech in Computer Science Engineering.
+                    </p>
+                    <div class="education-btn">
+                        <a href="https://vit.ac.in/"><button class="education-btn ref">Website of VIT Vellore</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br><br><br><br><br><br><br><br><br><hr>
+
+    <section class="about-section active" id="about">
+        <h1 class="about-heading">About Me</h1><br><br><br><br><br>
+        <div class="about">
+            <div class="about-img-container">
+                <img src="img/myimg.jpg" class="about-img" alt="">
+                <a href="Anubhav Agarwal - Resume Updated.pdf"><button class="download-cv-btn">CV / Resume</button></a>
+            </div>
+            <p class="about-info"><b style="color:gold">STRENGTHS</b>
+
+                <br><u>Resilience</u>
+                <br>To be calm and keep my cool is one of my greatest forte, I tend to show perseverance and work with a positive attitude even in the most serious and stressful situations, eventually finding the most optimal solution.
+                
+                <br><u>Team Player</u>
+                <br>Cooperation amongst all is what can be the backbone of the success of a goal, which when is properly dealt with, can be a contributing factor to one's personality.
+                
+                <br><u>Collaborative Ability</u>
+                <br>Being an open - minded person aids me to comprehend the various ways to talk to people and convince them for the best from the situation.
+                
+                <br><b style="color:gold">HOBBIES</b>
+                
+                <br><u>Communication & Learning</u>
+                <br>I love to communicate with different and new people, and try to know them and learn as much as possible from them. This not only improves creative thinking, but also eventually it helps me to understand more about people's behaviour and thinking patterns.
+                
+                <br><u>Solving Puzzles & Coding</u>
+                <br>During my free time I like to solve different types of puzzles found on the internet and sometimes I use it to solve coding problems on CodeChef.
+
+                <br><b style="color:gold">LANGUAGES</b>
+                <br>Familiar with C, C++, Python, Java, HTML, CSS, JavaScript, PHP, MySQL, React
+
+                <br><b style="color:gold">POSITIONS OF RESPONSIBILITIES</b>
+                <br>
+                - Senior Core Member in IEEE NPSS, under Finance Department.<br>
+                - Senior Core Member in IEEE Computer Society.<br>
+                - Senior Core Member in IEEE EMBS.<br>
+                - Senior Core Member in 5th Pillar.
+                </p>
+        </div>
+    </section>
+
+    <br><br><br><br><br><br><br><br><br><hr>
+
+    <section class="contact-section active" id="contact">
+        <h1 class="contact-heading">Contact Me</h1>
+        <b style="color:gold">EMAIL ADDRESS</b>
+        anubhav.agarwal2020@vitstudent.ac.in
+        <br><b style="color:gold">PHONE NUMBER</b>
+        9967334142
+        <a href="https://www.linkedin.com/in/anubhav-agarwal-6ab029252"><b style="color:gold">LINKEDIN LINK</b></a>
+        https://www.linkedin.com/in/anubhav-agarwal-6ab029252
+        <a href="https://www.instagram.com/anubhav.omg/?utm_source=qr"><b style="color:gold">INSTAGRAM LINK</b></a>
+        https://www.instagram.com/anubhav.omg/?utm_source=qr
+    </section>
+
+    <br><br><br><br><br><br><br><br><br><hr>
+
+</body>
+
+</html>
